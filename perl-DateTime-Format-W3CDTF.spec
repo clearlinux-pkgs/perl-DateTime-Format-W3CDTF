@@ -4,55 +4,17 @@
 #
 Name     : perl-DateTime-Format-W3CDTF
 Version  : 0.07
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
 Summary  : 'Parse and format W3CDTF datetime strings'
 Group    : Development/Tools
-License  : Artistic-1.0 Artistic-1.0+GPL-1.0 Artistic-1.0-Perl Artistic-1.0-cl8 GPL-1.0 GPL-2.0
+License  : Artistic-1.0 Artistic-1.0 GPL-1.0 Artistic-1.0-Perl Artistic-1.0-cl8 GPL-1.0 GPL-2.0
 Requires: perl-DateTime-Format-W3CDTF-license
 Requires: perl-DateTime-Format-W3CDTF-man
-Requires: perl(B::Hooks::EndOfScope)
-Requires: perl(Class::Data::Inheritable)
-Requires: perl(Class::Inspector)
-Requires: perl(Class::Singleton)
 Requires: perl(DateTime)
-Requires: perl(DateTime::Locale)
-Requires: perl(DateTime::TimeZone)
-Requires: perl(Exception::Class)
-Requires: perl(File::ShareDir)
-Requires: perl(Module::Implementation)
-Requires: perl(Module::Runtime)
-Requires: perl(Package::Stash)
-Requires: perl(Params::ValidationCompiler)
-Requires: perl(Specio::Exporter)
-Requires: perl(Sub::Exporter::Progressive)
-Requires: perl(Sub::Identify)
-Requires: perl(Try::Tiny)
-Requires: perl(Variable::Magic)
-Requires: perl(namespace::autoclean)
-Requires: perl(namespace::clean)
-BuildRequires : perl(B::Hooks::EndOfScope)
-BuildRequires : perl(Class::Data::Inheritable)
-BuildRequires : perl(Class::Inspector)
-BuildRequires : perl(Class::Singleton)
 BuildRequires : perl(DateTime)
-BuildRequires : perl(DateTime::Locale)
-BuildRequires : perl(DateTime::TimeZone)
-BuildRequires : perl(Exception::Class)
-BuildRequires : perl(File::ShareDir)
-BuildRequires : perl(Module::Implementation)
-BuildRequires : perl(Module::Runtime)
-BuildRequires : perl(Package::Stash)
-BuildRequires : perl(Params::ValidationCompiler)
-BuildRequires : perl(Specio::Exporter)
-BuildRequires : perl(Sub::Exporter::Progressive)
-BuildRequires : perl(Sub::Identify)
-BuildRequires : perl(Try::Tiny)
-BuildRequires : perl(Variable::Magic)
-BuildRequires : perl(namespace::autoclean)
-BuildRequires : perl(namespace::clean)
 
 %description
 NAME
@@ -95,13 +57,6 @@ else
 %{__perl} Build.PL
 ./Build
 fi
-
-%check
-export LANG=C
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}

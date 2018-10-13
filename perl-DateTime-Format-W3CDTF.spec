@@ -4,16 +4,15 @@
 #
 Name     : perl-DateTime-Format-W3CDTF
 Version  : 0.07
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
 Summary  : 'Parse and format W3CDTF datetime strings'
 Group    : Development/Tools
-License  : Artistic-1.0 Artistic-1.0 GPL-1.0 Artistic-1.0-Perl Artistic-1.0-cl8 GPL-1.0 GPL-2.0
-Requires: perl-DateTime-Format-W3CDTF-license
-Requires: perl-DateTime-Format-W3CDTF-man
-Requires: perl(DateTime)
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0 GPL-2.0
+Requires: perl-DateTime-Format-W3CDTF-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(DateTime)
 
 %description
@@ -21,6 +20,15 @@ NAME
 DateTime::Format::W3CDTF - Parse and format W3CDTF datetime strings
 SYNOPSIS
 use DateTime::Format::W3CDTF;
+
+%package dev
+Summary: dev components for the perl-DateTime-Format-W3CDTF package.
+Group: Development
+Provides: perl-DateTime-Format-W3CDTF-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-DateTime-Format-W3CDTF package.
+
 
 %package license
 Summary: license components for the perl-DateTime-Format-W3CDTF package.
@@ -30,19 +38,11 @@ Group: Default
 license components for the perl-DateTime-Format-W3CDTF package.
 
 
-%package man
-Summary: man components for the perl-DateTime-Format-W3CDTF package.
-Group: Default
-
-%description man
-man components for the perl-DateTime-Format-W3CDTF package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n DateTime-Format-W3CDTF-0.07
-mkdir -p %{_topdir}/BUILD/DateTime-Format-W3CDTF-0.07/deblicense/
+cd ..
+%setup -q -T -D -n DateTime-Format-W3CDTF-0.07 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/DateTime-Format-W3CDTF-0.07/deblicense/
 
 %build
@@ -60,13 +60,13 @@ fi
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-DateTime-Format-W3CDTF
-cp LICENSE %{buildroot}/usr/share/doc/perl-DateTime-Format-W3CDTF/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-DateTime-Format-W3CDTF/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-DateTime-Format-W3CDTF
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-DateTime-Format-W3CDTF/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-DateTime-Format-W3CDTF/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -75,13 +75,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/DateTime/Format/W3CDTF.pm
+/usr/lib/perl5/vendor_perl/5.26.1/DateTime/Format/W3CDTF.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-DateTime-Format-W3CDTF/LICENSE
-/usr/share/doc/perl-DateTime-Format-W3CDTF/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/DateTime::Format::W3CDTF.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-DateTime-Format-W3CDTF/LICENSE
+/usr/share/package-licenses/perl-DateTime-Format-W3CDTF/deblicense_copyright

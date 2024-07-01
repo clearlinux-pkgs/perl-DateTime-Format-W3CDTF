@@ -4,7 +4,7 @@
 #
 Name     : perl-DateTime-Format-W3CDTF
 Version  : 0.08
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/G/GW/GWILLIAMS/DateTime-Format-W3CDTF-0.08.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
